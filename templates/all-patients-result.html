@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Covid-19-Detection Webapp</title>
+</head>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='semantic.min.css') }}">
+
+<body>
+
+    <div class="ui menu">
+          <div class="header item">
+           X Hospital
+          </div>
+
+         <a href="{{ url_for('index') }}" class="item">
+           Home
+          </a>
+
+           <a  href="{{ url_for('aboutus') }}" class="item">
+            About Us
+          </a>
+
+
+         <a href="{{ url_for('aiwebapp') }}" class="item">
+           AI Model
+          </a>
+
+          <a class="item">
+            All Results
+          </a>
+
+          <a href="{{ url_for('logout') }}" class="item">
+            LogOut
+          </a>
+    </div>
+
+&nbsp;&nbsp;&nbsp;
+<div class="ui container">
+
+    <h1 class="ui center aligned huge header" style="font-size:39px;">Doctor {{ session['First_Name'] }}, these are all the previous results of your patients </h1>
+
+</div>
+
+     <div class="ui container">
+          <img class="ui centered large image" src="{{ url_for( 'static', filename='doctor_data_img.png' ) }}" align="center">
+    </div>
+&nbsp;
+    <div class="ui container">
+
+        {% if data %}
+            <table class="ui celled table">
+              <thead>
+                <tr><th>Patient Name</th>
+                <th>Ai Prediction</th>
+                <th>X-RAY Image</th>
+                 <th>Date</th>
+              </tr></thead>
+              <tbody>
+                {% for row in data %}
+                    <tr>
+                      <td data-label="Name">{{row['Patient_Name']}}</td>
+                      <td data-label="Age">{{ row['Prediction_Status'] }}</td>
+
+                      <td data-label="Job"><img src="{{ url_for( 'static', filename='upload_images/'+ row['Img_Name'] ) }}" width="80px" height="70px"/> </td>
+                         <td data-label="Age">{{ row['Date'] }}</td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        {% else %}
+
+        <h2>No data found.</h2>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>

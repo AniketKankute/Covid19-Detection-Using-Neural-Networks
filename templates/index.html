@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Covid-19-Detection Webapp</title>
+</head>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='semantic.min.css') }}">
+
+<body>
+
+    <div class="ui menu">
+          <div class="header item">
+           X Hospital
+          </div>
+
+          <a  href="{{ url_for('aboutus') }}" class="item">
+            About Us
+          </a>
+
+
+        <a href="{{ url_for('loginuser') }}" class="item">
+            Login
+          </a>
+
+        <a href="{{ url_for('registeruser') }}" class="item">
+            Register
+          </a>
+
+
+    </div>
+&nbsp;&nbsp;
+<div class="ui container">
+    <div class="ui two column grid">
+
+
+            <div class="eight wide column ">
+                <h1 class="ui huge header"  style="font-size:35px;">Hey there Doc! Welcome to our Covid-19 Detection WebApp.</h1>
+                     <p style="font-size:18px; opacity:70%;" >This webapp uses artificial intelligence to predict if patient has COVID-19 or not by providing
+                    xray images and gives result with 97% accuracy.</p>
+
+                {% if session['First_Name'] %}
+
+                    <a href="{{url_for('aiwebapp')}}"> <button  class="ui animated fade secondary button">
+                        <div class="visible content"> Get started</div>
+                        <div class="hidden content">
+                            Use Ai Model
+                        </div>
+                    </button></a>
+
+                {% else %}
+
+                     <a href="{{url_for('loginuser')}}"> <button  class="ui animated fade secondary button">
+                        <div class="visible content"> Get started</div>
+                        <div class="hidden content">
+                            Use Ai Model
+                        </div>
+                    </button></a>
+
+                {% endif %}
+
+                <a href="{{url_for('loginuser')}}"><button  class="ui button">
+                    Log In
+                </button></a>
+
+
+
+            </div>
+
+             <div class=" eight wide column">
+                 <img class="ui huge image" src="{{ url_for('static', filename='hero_img.png') }}"  >
+             </div>
+
+
+    </div>
+
+</div>
+
+
+</body>
+ <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<script src=" {{ url_for('static', filename='semantic.min.js') }} "></script>
+
+</html>
+</html>
